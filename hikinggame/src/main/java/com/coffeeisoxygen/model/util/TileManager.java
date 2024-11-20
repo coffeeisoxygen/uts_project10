@@ -8,7 +8,7 @@ public class TileManager {
     public static Tile createTileWithPosition(ITileFactory tileFactory, TileType type, int row, int col, String name) {
         Tile tile = tileFactory.createTile(type);
         tile.setPosition(new Coordinate(row, col));
-        tile.setName(name); // Assuming Tile class has a setName method
+        tile.setName();
         return tile;
     }
 }

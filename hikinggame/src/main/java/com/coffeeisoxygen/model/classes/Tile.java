@@ -25,6 +25,10 @@ public abstract class Tile implements ITileEffect, Serializable {
         return name;
     }
 
+    public String setName() {
+        return name;
+    }
+
     public TileType getType() {
         return type;
     }
