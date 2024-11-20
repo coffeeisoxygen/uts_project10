@@ -4,9 +4,10 @@ import java.awt.Color;
 import java.io.Serializable;
 
 import com.coffeeisoxygen.model.enums.TileType;
+import com.coffeeisoxygen.model.interfaces.ITileEffect;
 import com.coffeeisoxygen.model.util.Coordinate;
 
-public abstract class Tile implements Serializable {
+public abstract class Tile implements ITileEffect, Serializable {
     private static final long serialVersionUID = 1L;
 
     private String name;
@@ -24,16 +25,8 @@ public abstract class Tile implements Serializable {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public TileType getType() {
         return type;
-    }
-
-    public void setType(TileType type) {
-        this.type = type;
     }
 
     public Coordinate getPosition() {
@@ -48,9 +41,6 @@ public abstract class Tile implements Serializable {
         return color;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public abstract void onPlayerStep(Player player);
+    @Override
+    public abstract void onPlayerStep(Player player, Game game);
 }

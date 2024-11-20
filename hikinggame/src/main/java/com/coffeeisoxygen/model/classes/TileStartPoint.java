@@ -12,7 +12,7 @@ public class TileStartPoint extends Tile {
     }
 
     @Override
-    public void onPlayerStep(Player player) {
-        // Implementation for when a player steps on the start point
+    public void onPlayerStep(Player player, Game game) {
+        // No special effect for normal point
     }
 }

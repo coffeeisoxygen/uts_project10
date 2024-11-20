@@ -38,6 +38,11 @@ public class Board implements IBoardManager, Serializable {
     }
 
     @Override
+    public synchronized void getFinishPosition(Coordinate position) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
     public synchronized void resetBoard(Tile defaultTile) {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {

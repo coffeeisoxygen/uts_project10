@@ -16,4 +16,5 @@ public interface IBoardManager {
 
     boolean isValidPosition(Coordinate position); // Validasi posisi
     void visualizeBoard(); // Visualisasi Board debuging purposes
+    void getFinishPosition(Coordinate position); // Mendapatkan posisi finish
 }
