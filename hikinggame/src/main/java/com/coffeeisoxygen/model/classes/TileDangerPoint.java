@@ -1,8 +1,7 @@
 package com.coffeeisoxygen.model.classes;
 
 import com.coffeeisoxygen.model.enums.TileType;
-import com.coffeeisoxygen.model.util.Coordinate;
-
+;
 public class TileDangerPoint extends Tile {
     private static final long serialVersionUID = 1L;
 

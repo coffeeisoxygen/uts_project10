@@ -3,7 +3,6 @@ package com.coffeeisoxygen.model.classes;
 import java.awt.Color;
 
 import com.coffeeisoxygen.model.enums.TileType;
-import com.coffeeisoxygen.model.util.Coordinate;
 
 public class TileNormalPoint extends Tile {
     private static final long serialVersionUID = 1L;

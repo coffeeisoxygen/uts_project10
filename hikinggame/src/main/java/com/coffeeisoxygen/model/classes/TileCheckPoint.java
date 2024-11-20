@@ -1,7 +1,6 @@
 package com.coffeeisoxygen.model.classes;
 
 import com.coffeeisoxygen.model.enums.TileType;
-import com.coffeeisoxygen.model.util.Coordinate;
 
 public class TileCheckPoint extends Tile {
     private static final long serialVersionUID = 1L;
@@ -15,5 +14,7 @@ public class TileCheckPoint extends Tile {
         if (game.getCurrentMove() == 'S') {
             player.getState().addEnergy(10);
         }
+
+        // system.out.println("Player reached the checkpoint and is alive.");
     }
 }
