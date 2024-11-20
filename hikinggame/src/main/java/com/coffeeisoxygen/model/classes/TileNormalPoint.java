@@ -8,7 +8,7 @@ public class TileNormalPoint extends Tile {
     private static final long serialVersionUID = 1L;
 
     public TileNormalPoint() {
-        super(".", TileType.NORMALPOINT, Color.GRAY);
+        super("N", TileType.NORMALPOINT, Color.GRAY);
     }
 
     @Override

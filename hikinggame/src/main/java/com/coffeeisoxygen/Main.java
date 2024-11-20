@@ -47,19 +47,22 @@ public class Main {
                     int rows = scanner.nextInt();
                     System.out.println("Enter the number of columns:");
                     int cols = scanner.nextInt();
+
                     System.out.println("Choose a map generation algorithm:");
                     System.out.println("1. Maze Generation");
                     System.out.println("2. Percolation");
                     int algoChoice = scanner.nextInt();
-                     switch (algoChoice) {
+
+                    switch (algoChoice) {
                         case 1 -> mapGeneratorContext.setMapGenerator(new MazeGenerator(tileFactory));
                         case 2 -> mapGeneratorContext.setMapGenerator(new PercolationGenerator(tileFactory));
                         default -> {
                             System.out.println("Invalid choice. Defaulting to normal tiles.");
                             mapGeneratorContext.setMapGenerator(null);
+                        }
                     }
-                    }
-IMapEditor mapEditor = new CustomMapEditor(tileFactory, mapGeneratorContext);
+
+                    IMapEditor mapEditor = new CustomMapEditor(tileFactory, mapGeneratorContext);
                     board = mapEditor.createCustomMap(rows, cols);
                 }
                 default -> {
@@ -88,3 +91,19 @@ IMapEditor mapEditor = new CustomMapEditor(tileFactory, mapGeneratorContext);
         }
     }
 }
+
+// [ ] todo : Algorithm Improvements: 
+// - [ ] todo : Research and implement more sophisticated
+// algorithms for map generation.
+// - [ ] todo : Game Logic: Implement the core game logic, including player
+// movement,
+// scoring, and game state management.
+// ? [ ] MARK: UI Enhancements: Improve the user interface, possibly adding a
+// graphical
+// interface or enhancing the text-based interface.
+// ? [ ] MARK: Testing: Write unit tests and integration tests to ensure the
+// correctness
+// of the game logic and map generation algorithms.
+// ? [ ] MARK: Documentation: Add documentation and comments to the code to
+// improve
+// readability and maintainability.

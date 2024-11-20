@@ -38,7 +38,7 @@ public class Board implements IBoardManager, Serializable {
     }
 
     @Override
-    public void resetBoard(Tile defaultTile) {
+    public synchronized void resetBoard(Tile defaultTile) {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 Tile newTile = tileFactory.createTile(defaultTile.getType());
@@ -50,7 +50,7 @@ public class Board implements IBoardManager, Serializable {
     }
 
     @Override
-    public List<Tile> getAllTiles() {
+    public synchronized List<Tile> getAllTiles() {
         List<Tile> tileList = new ArrayList<>();
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
@@ -63,26 +63,26 @@ public class Board implements IBoardManager, Serializable {
     }
 
     @Override
-    public boolean isValidPosition(Coordinate position) {
+    public synchronized boolean isValidPosition(Coordinate position) {
         return position.getX() >= 0 && position.getX() < rows &&
                 position.getY() >= 0 && position.getY() < cols;
     }
 
-    private void validatePosition(Coordinate position) {
+    private synchronized void validatePosition(Coordinate position) {
         if (!isValidPosition(position)) {
             throw new IllegalArgumentException("Invalid position: " + position);
         }
     }
 
     @Override
-    public void setTile(Coordinate position, Tile tile) {
+    public synchronized void setTile(Coordinate position, Tile tile) {
         validatePosition(position);
         tiles[position.getX()][position.getY()] = tile;
         support.firePropertyChange("tileSet", null, tile);
     }
 
     @Override
-    public Tile getTile(Coordinate position) {
+    public synchronized Tile getTile(Coordinate position) {
         validatePosition(position);
         return tiles[position.getX()][position.getY()];
     }
