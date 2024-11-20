@@ -22,7 +22,7 @@ public class Main {
             System.out.println("1. Load default map");
             System.out.println("2. Load custom map");
             int choice = scanner.nextInt();
-            
+
             Board board;
             if (choice == 1) {
                 IMapLoader defaultMapLoader = new DefaultMapLoader(tileFactory);
@@ -33,15 +33,15 @@ public class Main {
                 IMapLoader customMapLoader = new CustomMapLoader(tileFactory, MAPS_DIRECTORY, fileName);
                 board = customMapLoader.loadMap();
             }
-            
+
             // Display all tiles on the board
             for (Tile tile : board.getAllTiles()) {
                 System.out.println(tile.getName() + " at " + tile.getPosition() + " COLOR " + tile.getColor());
             }
-            
+
             // Visualize the board
             board.visualizeBoard();
-            
+
             // Save the custom map
             System.out.println("Do you want to save the current map? (yes/no)");
             String saveChoice = scanner.next();
