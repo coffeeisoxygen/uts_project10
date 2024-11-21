@@ -35,8 +35,9 @@ public class TileManager implements ITileManager {
 
     @Override
     public void resetTile(Coordinate position) {
-        // Logic to reset the tile at the given position
-        // This could involve setting it to a default state or removing it
+        // // Assuming you have a way to access the mapBoard
+        // Tile defaultTile = createTile(TileType.NORMALPOINT, "Normal", position);
+        // MapBoard.setTile(position, defaultTile);
     }
 
     @Override
@@ -49,5 +50,16 @@ public class TileManager implements ITileManager {
         Tile tile = tileFactory.createTile(type);
         tile.setPosition(new Coordinate(row, col));
         return tile;
+    }
+
+    public void reset() {
+        // Assuming you have a way to access the mapBoard
+        // for (int row = 0; row < MapBoard.getBoard().getHeight(); row++) {
+        // for (int col = 0; col < MapBoard.getBoard().getWidth(); col++) {
+        // Coordinate position = new Coordinate(col, row);
+        // resetTile(position);
+        // }
+        // }
+        // }
     }
 }

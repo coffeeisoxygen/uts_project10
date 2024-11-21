@@ -37,7 +37,7 @@ public class MapBoard implements Serializable {
             tiles[position.getY()][position.getX()] = tile;
             tileAttributes.put(position, tile);
         } else {
-            throw new IllegalArgumentException("Invalid position: " + position);
+            throw new IllegalArgumentException("Invalid set position: " + position);
         }
     }
 
@@ -45,7 +45,7 @@ public class MapBoard implements Serializable {
         if (board.isValidPosition(position.getX(), position.getY())) {
             return tiles[position.getY()][position.getX()];
         } else {
-            throw new IllegalArgumentException("Invalid position: " + position);
+            throw new IllegalArgumentException("Invalid get position: " + position);
         }
     }
 
@@ -73,5 +73,9 @@ public class MapBoard implements Serializable {
 
     public void resetMap(TileManager tileManager) {
         TilePlacementUtils.placeDefaultTiles(tileManager, this);
+    }
+
+    public Tile[][] getTiles() {
+        return tiles;
     }
 }

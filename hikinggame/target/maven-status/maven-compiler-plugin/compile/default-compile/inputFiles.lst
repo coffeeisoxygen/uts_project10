@@ -1,6 +1,4 @@
-F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\strategies\DijkstraMapStrategy.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\managers\BoardManager.java
-F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\util\TemplateLoader.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\classes\Player.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\classes\tiles\Tile.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\util\Direction.java
@@ -11,13 +9,13 @@ F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\Main.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\classes\tiles\TileFinishPoint.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\templates\TemplateData.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\classes\tiles\TileDangerPoint.java
-F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\strategies\TemplateMapStrategy.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\classes\board\Board.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\enums\TileType.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\strategies\DefaultMapStrategy.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\classes\tiles\TileCheckPoint.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\util\TilePlacementUtils.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\classes\mapboard\MapBoard.java
+F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\templates\TemplateLoader.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\interfaces\IMapEditor.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\interfaces\IMapGenerator.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\interfaces\ITileManager.java
@@ -27,6 +25,8 @@ F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\strategies\Ma
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\strategies\PercolationMapStrategy.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\interfaces\IMapStrategy.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\managers\PlayerManager.java
+F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\util\DijkstraMapStrategy.java
+F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\templates\TemplateMapStrategy.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\managers\TileManager.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\interfaces\IMapSaver.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\classes\tiles\TileNormalPoint.java
@@ -35,6 +35,7 @@ F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\interfaces\IM
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\interfaces\ITileEffect.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\classes\tiles\TileStartPoint.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\managers\MapManagerConfig.java
+F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\util\PathfindingUtils.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\factory\TileFactory.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\interfaces\IMapManagerRefactored.java
 F:\uts_project10\hikinggame\src\main\java\com\coffeeisoxygen\model\managers\MapManager.java
