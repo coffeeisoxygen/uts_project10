@@ -1,5 +1,6 @@
-package com.coffeeisoxygen.model.classes;
+package com.coffeeisoxygen.model.classes.board;
 
+import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.interfaces.IMapLoader;
 import com.coffeeisoxygen.model.interfaces.ITileFactory;

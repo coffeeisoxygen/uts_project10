@@ -1,6 +1,6 @@
 package com.coffeeisoxygen.model.util;
 
-import com.coffeeisoxygen.model.classes.Tile;
+import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.interfaces.ITileFactory;
 

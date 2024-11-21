@@ -1,8 +1,9 @@
-package com.coffeeisoxygen.model.classes;
+package com.coffeeisoxygen.model.classes.tiles;
 
 import java.awt.Color;
 
 import com.coffeeisoxygen.model.enums.TileType;
+import com.coffeeisoxygen.model.classes.Player;
 
 public class TileFinishPoint extends Tile {
     private static final long serialVersionUID = 1L;

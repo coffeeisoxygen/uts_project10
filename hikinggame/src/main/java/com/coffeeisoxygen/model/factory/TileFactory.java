@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import com.coffeeisoxygen.model.classes.Tile;
-import com.coffeeisoxygen.model.classes.TileCheckPoint;
-import com.coffeeisoxygen.model.classes.TileDangerPoint;
-import com.coffeeisoxygen.model.classes.TileFinishPoint;
-import com.coffeeisoxygen.model.classes.TileNormalPoint;
-import com.coffeeisoxygen.model.classes.TileStartPoint;
+import com.coffeeisoxygen.model.classes.tiles.Tile;
+import com.coffeeisoxygen.model.classes.tiles.TileCheckPoint;
+import com.coffeeisoxygen.model.classes.tiles.TileDangerPoint;
+import com.coffeeisoxygen.model.classes.tiles.TileFinishPoint;
+import com.coffeeisoxygen.model.classes.tiles.TileNormalPoint;
+import com.coffeeisoxygen.model.classes.tiles.TileStartPoint;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.interfaces.ITileFactory;
 

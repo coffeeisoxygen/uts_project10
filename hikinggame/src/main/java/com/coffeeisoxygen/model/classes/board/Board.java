@@ -1,4 +1,4 @@
-package com.coffeeisoxygen.model.classes;
+package com.coffeeisoxygen.model.classes.board;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.factory.TileFactory;
 import com.coffeeisoxygen.model.interfaces.IBoardManager;

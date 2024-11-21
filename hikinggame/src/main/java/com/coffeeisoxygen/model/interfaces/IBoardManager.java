@@ -2,7 +2,7 @@ package com.coffeeisoxygen.model.interfaces;
 
 import java.util.List;
 
-import com.coffeeisoxygen.model.classes.Tile;
+import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.util.Coordinate;
 
 public interface IBoardManager {

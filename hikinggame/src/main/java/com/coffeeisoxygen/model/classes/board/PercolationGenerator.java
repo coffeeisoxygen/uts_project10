@@ -1,4 +1,4 @@
-package com.coffeeisoxygen.model.classes;
+package com.coffeeisoxygen.model.classes.board;
 
 // TODO: fix percolation generator
 
@@ -6,6 +6,7 @@ package com.coffeeisoxygen.model.classes;
 
 import java.util.Random;
 
+import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.interfaces.IMapGenerator;
 import com.coffeeisoxygen.model.interfaces.ITileFactory;

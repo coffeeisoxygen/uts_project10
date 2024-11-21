@@ -1,4 +1,4 @@
-package com.coffeeisoxygen.model.classes;
+package com.coffeeisoxygen.model.classes.board;
 // TODO: fix maze generator
 
 // ![ ] define a way to generate a maze

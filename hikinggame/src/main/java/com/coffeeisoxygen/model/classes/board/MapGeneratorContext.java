@@ -1,4 +1,4 @@
-package com.coffeeisoxygen.model.classes;
+package com.coffeeisoxygen.model.classes.board;
 
 import com.coffeeisoxygen.model.interfaces.IMapGenerator;
 

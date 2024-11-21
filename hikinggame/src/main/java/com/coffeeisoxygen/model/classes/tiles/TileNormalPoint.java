@@ -1,14 +1,15 @@
-package com.coffeeisoxygen.model.classes;
+package com.coffeeisoxygen.model.classes.tiles;
 
 import java.awt.Color;
 
 import com.coffeeisoxygen.model.enums.TileType;
+import com.coffeeisoxygen.model.classes.Player;
 
-public class TileStartPoint extends Tile {
+public class TileNormalPoint extends Tile {
     private static final long serialVersionUID = 1L;
 
-    public TileStartPoint() {
-        super("S", TileType.STARTPOINT, Color.BLUE);
+    public TileNormalPoint() {
+        super("Normal Point", TileType.NORMALPOINT, Color.GRAY);
     }
 
     @Override

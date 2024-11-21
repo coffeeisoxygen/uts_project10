@@ -1,4 +1,4 @@
-package com.coffeeisoxygen.model.classes;
+package com.coffeeisoxygen.model.classes.board;
 
 import java.io.File;
 import java.io.FileInputStream;

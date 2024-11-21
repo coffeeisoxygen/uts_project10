@@ -1,5 +1,7 @@
-package com.coffeeisoxygen.model.classes;
+package com.coffeeisoxygen.model.classes.tiles;
 
+import com.coffeeisoxygen.model.classes.Game;
+import com.coffeeisoxygen.model.classes.Player;
 import com.coffeeisoxygen.model.enums.TileType;
 ;
 public class TileDangerPoint extends Tile {
