@@ -10,8 +10,8 @@ import java.util.Stack;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.interfaces.IMapGenerator;
 import com.coffeeisoxygen.model.interfaces.ITileFactory;
+import com.coffeeisoxygen.model.managers.TileManager;
 import com.coffeeisoxygen.model.util.Coordinate;
-import com.coffeeisoxygen.model.util.TileManager;
 
 public class MazeGenerator implements IMapGenerator {
     private final ITileFactory tileFactory;
@@ -21,8 +21,8 @@ public class MazeGenerator implements IMapGenerator {
     }
 
     @Override
-    public Board generateMap(int rows, int cols) {
-        Board board = new Board(rows, cols, tileFactory);
+    public BoardRefactored generateMap(int rows, int cols) {
+        BoardRefactored board = new BoardRefactored(rows, cols, tileFactory);
         boolean[][] visited = new boolean[rows][cols];
         Stack<Coordinate> stack = new Stack<>();
         Coordinate start = new Coordinate(0, 0);
@@ -80,7 +80,7 @@ public class MazeGenerator implements IMapGenerator {
         return x >= 0 && x < rows && y >= 0 && y < cols && !visited[x][y];
     }
 
-    private void ensurePath(Board board, boolean[][] visited, int rows, int cols) {
+    private void ensurePath(BoardRefactored board, boolean[][] visited, int rows, int cols) {
         // Ensure there is a path from start to finish
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {

@@ -4,8 +4,8 @@ import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.interfaces.IMapLoader;
 import com.coffeeisoxygen.model.interfaces.ITileFactory;
+import com.coffeeisoxygen.model.managers.TileManager;
 import com.coffeeisoxygen.model.util.Coordinate;
-import com.coffeeisoxygen.model.util.TileManager;
 
 public class DefaultMapLoader implements IMapLoader {
     private final ITileFactory tileFactory;
@@ -17,12 +17,12 @@ public class DefaultMapLoader implements IMapLoader {
     }
 
     @Override
-    public Board loadMap() {
+    public BoardRefactored loadMap() {
         return getDefaultTileLayout();
     }
 
-    private Board getDefaultTileLayout() {
-        Board board = new Board(rows, cols, tileFactory);
+    private BoardRefactored getDefaultTileLayout() {
+        BoardRefactored board = new BoardRefactored(rows, cols, tileFactory);
 
         // Step 1: Create all tiles as normal tiles
         for (int row = 0; row < rows; row++) {

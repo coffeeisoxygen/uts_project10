@@ -2,7 +2,7 @@ package com.coffeeisoxygen;
 
 import java.util.Scanner;
 
-import com.coffeeisoxygen.model.classes.board.Board;
+import com.coffeeisoxygen.model.classes.board.BoardRefactored;
 import com.coffeeisoxygen.model.classes.board.CustomMapEditor;
 import com.coffeeisoxygen.model.classes.board.CustomMapLoader;
 import com.coffeeisoxygen.model.classes.board.CustomMapSaver;
@@ -30,7 +30,7 @@ public class Main {
             System.out.println("3. Create custom map");
             int choice = scanner.nextInt();
 
-            Board board;
+            BoardRefactored board;
             switch (choice) {
                 case 1 -> {
                     IMapLoader defaultMapLoader = new DefaultMapLoader(tileFactory);

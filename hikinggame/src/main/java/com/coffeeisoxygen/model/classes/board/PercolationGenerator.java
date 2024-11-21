@@ -10,8 +10,8 @@ import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.interfaces.IMapGenerator;
 import com.coffeeisoxygen.model.interfaces.ITileFactory;
+import com.coffeeisoxygen.model.managers.TileManager;
 import com.coffeeisoxygen.model.util.Coordinate;
-import com.coffeeisoxygen.model.util.TileManager;
 
 public class PercolationGenerator implements IMapGenerator {
     private final ITileFactory tileFactory;
@@ -22,8 +22,8 @@ public class PercolationGenerator implements IMapGenerator {
     }
 
     @Override
-    public Board generateMap(int rows, int cols) {
-        Board board = new Board(rows, cols, tileFactory);
+    public BoardRefactored generateMap(int rows, int cols) {
+        BoardRefactored board = new BoardRefactored(rows, cols, tileFactory);
         boolean[][] visited = new boolean[rows][cols];
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
@@ -47,7 +47,7 @@ public class PercolationGenerator implements IMapGenerator {
         return board;
     }
 
-    private void ensurePath(Board board, boolean[][] visited, int rows, int cols) {
+    private void ensurePath(BoardRefactored board, boolean[][] visited, int rows, int cols) {
         // Ensure there is a path from start to finish
         boolean[][] path = new boolean[rows][cols];
         if (findPath(0, 0, visited, path, rows, cols)) {

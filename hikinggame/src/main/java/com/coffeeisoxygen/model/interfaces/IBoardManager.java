@@ -1,20 +1,13 @@
 package com.coffeeisoxygen.model.interfaces;
 
-import java.util.List;
-
-import com.coffeeisoxygen.model.classes.tiles.Tile;
-import com.coffeeisoxygen.model.util.Coordinate;
+import com.coffeeisoxygen.model.classes.board.Board;
 
 public interface IBoardManager {
-    void setTile(Coordinate position, Tile tile); // Set Tile di posisi
+    int getWidth();
 
-    Tile getTile(Coordinate position); // Get Tile di posisi
+    int getHeight();
 
-    List<Tile> getAllTiles(); // Semua Tile
+    boolean isValidPosition(int x, int y);
 
-    void resetBoard(Tile defaultTile); // Reset semua Tile
-
-    boolean isValidPosition(Coordinate position); // Validasi posisi
-    void visualizeBoard(); // Visualisasi Board debuging purposes
-    void getFinishPosition(Coordinate position); // Mendapatkan posisi finish
+    Board getBoard();
 }

@@ -15,5 +15,7 @@ public class TileNormalPoint extends Tile {
     @Override
     public void onPlayerStep(Player player) {
         // No special effect for normal point
+        // TODO : Add more effects
+        System.out.println("You stepped on a normal point!");
     }
 }

@@ -1,7 +1,7 @@
 package com.coffeeisoxygen.model.interfaces;
 
-import com.coffeeisoxygen.model.classes.board.Board;
+import com.coffeeisoxygen.model.classes.board.BoardRefactored;
 
 public interface IMapSaver {
-    void saveMap(Board board);
+    void saveMap(BoardRefactored board);
 }

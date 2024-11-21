@@ -16,5 +16,7 @@ public class TileDangerPoint extends Tile {
         // energy
         // if (player.getState().isAlive()) {
         // game.setWinning(false);
+        // TODO: Add more effects
+        System.out.println("You stepped on a danger point!");
     }
 }

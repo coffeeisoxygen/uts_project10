@@ -18,5 +18,8 @@ public class TileFinishPoint extends Tile {
         // if (state.isAlive()) {
         // System.out.println("Player reached the finish point and is alive.");
         // game.setWinning(true);
+
+        // TODO: Add more effects
+        System.out.println("You reached the finish point!");
     }
 }

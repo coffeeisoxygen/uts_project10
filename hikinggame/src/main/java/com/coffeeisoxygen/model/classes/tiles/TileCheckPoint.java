@@ -14,6 +14,8 @@ public class TileCheckPoint extends Tile {
     public void onPlayerStep(Player player) {
         // if (player.getCheckPoint() == null) {
         // player.setCheckPoint(getPosition());
+        // TODO : Logic Player on this tile
+        System.out.println("Player on CheckPoint");
     }
 
 }

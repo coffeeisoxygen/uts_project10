@@ -12,6 +12,7 @@ import com.coffeeisoxygen.model.classes.tiles.TileNormalPoint;
 import com.coffeeisoxygen.model.classes.tiles.TileStartPoint;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.interfaces.ITileFactory;
+import com.coffeeisoxygen.model.util.Coordinate;
 
 public class TileFactory implements ITileFactory {
     private static final Map<TileType, Supplier<Tile>> tileRegistry = new HashMap<>();
@@ -31,5 +32,12 @@ public class TileFactory implements ITileFactory {
             return tileSupplier.get();
         }
         throw new IllegalArgumentException("Unknown TileType: " + type);
+    }
+
+    @Override
+    public Tile createTile(TileType type, Coordinate position) {
+        Tile tile = createTile(type);
+        tile.setPosition(position);
+        return tile;
     }
 }

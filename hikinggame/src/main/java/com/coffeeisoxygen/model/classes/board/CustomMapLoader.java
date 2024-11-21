@@ -20,10 +20,10 @@ public class CustomMapLoader implements IMapLoader {
     }
 
     @Override
-    public Board loadMap() {
+    public BoardRefactored loadMap() {
         File file = new File(directoryPath, fileName);
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            return (Board) ois.readObject();
+            return (BoardRefactored) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return null;

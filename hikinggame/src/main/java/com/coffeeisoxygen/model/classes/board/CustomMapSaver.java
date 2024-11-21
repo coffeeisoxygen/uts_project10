@@ -17,7 +17,7 @@ public class CustomMapSaver implements IMapSaver {
     }
 
     @Override
-    public void saveMap(Board board) {
+    public void saveMap(BoardRefactored board) {
         File directory = new File(directoryPath);
         if (!directory.exists()) {
             directory.mkdirs();
