@@ -14,6 +14,7 @@ public class PlayerManager {
 
     public void moveLeft() {
         if (player.getEnergy() > 0) {
+            direction = new Direction(player.getPosition());
             direction.moveLeft();
             player.setPosition(direction.getPosition());
             player.setEnergy(player.getEnergy() - 1);
@@ -24,6 +25,7 @@ public class PlayerManager {
 
     public void moveRight() {
         if (player.getEnergy() > 0) {
+            direction = new Direction(player.getPosition());
             direction.moveRight();
             player.setPosition(direction.getPosition());
             player.setEnergy(player.getEnergy() - 1);
@@ -34,6 +36,7 @@ public class PlayerManager {
 
     public void moveUp() {
         if (player.getEnergy() > 0) {
+            direction = new Direction(player.getPosition());
             direction.moveUp();
             player.setPosition(direction.getPosition());
             player.setEnergy(player.getEnergy() - 1);
@@ -44,6 +47,7 @@ public class PlayerManager {
 
     public void moveDown() {
         if (player.getEnergy() > 0) {
+            direction = new Direction(player.getPosition());
             direction.moveDown();
             player.setPosition(direction.getPosition());
             player.setEnergy(player.getEnergy() - 1);
@@ -54,6 +58,7 @@ public class PlayerManager {
 
     public void dontMove() {
         if (player.getEnergy() > 0) {
+            direction = new Direction(player.getPosition());
             direction.stopMove();
             player.setPosition(direction.getPosition());
             player.setEnergy(player.getEnergy() - 1);
