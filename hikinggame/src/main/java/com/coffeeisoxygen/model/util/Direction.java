@@ -35,7 +35,8 @@ public class Direction implements IMoveCommand {
 
     @Override
     public void stopMove() {
-        // for now its empty
-        // ? [ ] Mark: comback later
+        position = new Coordinate(position.getX(), position.getY());
+        // meaning the player does not move
+
     }
 }

@@ -52,15 +52,37 @@ public class PlayerManager {
         }
     }
 
+    public void dontMove() {
+        if (player.getEnergy() > 0) {
+            direction.stopMove();
+            player.setPosition(direction.getPosition());
+            player.setEnergy(player.getEnergy() - 1);
+        } else {
+            System.out.println("Not enough energy to stay still.");
+        }
+    }
+
     public void executeMovementPlan(String plan) {
         for (char move : plan.toCharArray()) {
-            switch (move) {
+            switch (Character.toUpperCase(move)) {
                 case 'U' -> moveUp();
                 case 'D' -> moveDown();
                 case 'L' -> moveLeft();
                 case 'R' -> moveRight();
+                case 'S' -> dontMove();
                 default -> throw new IllegalArgumentException("Invalid move: " + move);
             }
+        }
+    }
+
+    public void handleKeyPress(char key) {
+        switch (Character.toUpperCase(key)) {
+            case 'U' -> moveUp();
+            case 'D' -> moveDown();
+            case 'L' -> moveLeft();
+            case 'R' -> moveRight();
+            case 'S' -> dontMove();
+            default -> System.out.println("Invalid key: " + key);
         }
     }
 }
