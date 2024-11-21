@@ -17,9 +17,9 @@ public abstract class Tile implements ITileEffect, Serializable {
     private Color color;
 
     public Tile(String name, TileType type, Color color) {
-        this.type = type;
-        this.name = (name != null && !name.isEmpty()) ? name : type.name();
-        this.color = (color != null) ? color : type.getDefaultColor();
+        this.type = (type != null) ? type : TileType.NORMALPOINT;
+        this.name = (name != null && !name.isEmpty()) ? name : (type != null ? type.name() : "UNKNOWN");
+        this.color = (color != null) ? color : (type != null ? type.getDefaultColor() : Color.GRAY);
     }
 
     public String getName() {

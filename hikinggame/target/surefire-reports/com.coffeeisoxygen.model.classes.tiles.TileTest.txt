@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.coffeeisoxygen.model.classes.tiles.TileTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.205 s <<< FAILURE! - in com.coffeeisoxygen.model.classes.tiles.TileTest
+testSetColor  Time elapsed: 0.202 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Cannot mock/spy class com.coffeeisoxygen.model.enums.TileType
+Mockito cannot mock/spy because :
+ - final class
+	at com.coffeeisoxygen.model.classes.tiles.TileTest.setUp(TileTest.java:24)
+
