@@ -2,8 +2,8 @@ package com.coffeeisoxygen.model.classes.tiles;
 
 import java.awt.Color;
 
-import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.classes.Player;
+import com.coffeeisoxygen.model.enums.TileType;
 
 public class TileStartPoint extends Tile {
     private static final long serialVersionUID = 1L;
@@ -13,7 +13,7 @@ public class TileStartPoint extends Tile {
     }
 
     @Override
-    public void onPlayerStep(Player player, Game game) {
+    public void onPlayerStep(Player player) {
         // No special effect for normal point
     }
 }

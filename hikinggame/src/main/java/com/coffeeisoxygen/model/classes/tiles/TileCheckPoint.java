@@ -1,6 +1,5 @@
 package com.coffeeisoxygen.model.classes.tiles;
 
-import com.coffeeisoxygen.model.classes.Game;
 import com.coffeeisoxygen.model.classes.Player;
 import com.coffeeisoxygen.model.enums.TileType;
 
@@ -12,11 +11,9 @@ public class TileCheckPoint extends Tile {
     }
 
     @Override
-    public void onPlayerStep(Player player, Game game) {
-        if (game.getCurrentMove() == 'S') {
-            player.getState().addEnergy(10);
-        }
-
-        // system.out.println("Player reached the checkpoint and is alive.");
+    public void onPlayerStep(Player player) {
+        // if (player.getCheckPoint() == null) {
+        // player.setCheckPoint(getPosition());
     }
+
 }

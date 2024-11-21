@@ -1,9 +1,8 @@
 package com.coffeeisoxygen.model.classes.tiles;
 
-import com.coffeeisoxygen.model.classes.Game;
 import com.coffeeisoxygen.model.classes.Player;
-import com.coffeeisoxygen.model.enums.TileType;
-;
+import com.coffeeisoxygen.model.enums.TileType;;
+
 public class TileDangerPoint extends Tile {
     private static final long serialVersionUID = 1L;
 
@@ -12,10 +11,10 @@ public class TileDangerPoint extends Tile {
     }
 
     @Override
-    public void onPlayerStep(Player player, Game game) {
-        player.getState().reduceEnergy(player.getState().getEnergy()); // Reduce all energy
-        if (player.getState().isAlive()) {
-            game.setWinning(false);
-        }
+    public void onPlayerStep(Player player) {
+        // player.getState().reduceEnergy(player.getState().getEnergy()); // Reduce all
+        // energy
+        // if (player.getState().isAlive()) {
+        // game.setWinning(false);
     }
 }
