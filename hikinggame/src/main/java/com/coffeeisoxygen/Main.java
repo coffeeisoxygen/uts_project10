@@ -4,23 +4,17 @@ import java.io.IOException;
 
 import com.coffeeisoxygen.model.managers.MapManager;
 import com.coffeeisoxygen.model.managers.MapManagerConfig;
+import com.coffeeisoxygen.model.templates.TemplateData;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            // Using DefaultMapStrategy
-            MapManager defaultMapManager = MapManagerConfig.createMapManager("default");
-            defaultMapManager.createMap("DefaultMap", 6, 12);
-            defaultMapManager.visualizeMap();
-
-            // Using DijkstraMapStrategy
-            MapManager dijkstraMapManager = MapManagerConfig.createMapManager("dijkstra");
-            dijkstraMapManager.createMap("DijkstraMap", 6, 12);
-            dijkstraMapManager.visualizeMap();
+            // Load template data
+            TemplateData templateData = TemplateData.loadFromResource("/templates/gametemplate/firstmap.json");
 
             // Using TemplateMapStrategy
-            MapManager templateMapManager = MapManagerConfig.createMapManager("template");
-            templateMapManager.createMap("TemplateMap", 6, 12);
+            MapManager templateMapManager = MapManagerConfig.createMapManager("template", templateData);
+            templateMapManager.createMap(templateData.name, templateData.rows, templateData.cols);
             templateMapManager.visualizeMap();
         } catch (IOException e) {
             e.printStackTrace();

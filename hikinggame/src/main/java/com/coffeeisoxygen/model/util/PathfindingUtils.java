@@ -1,43 +1,17 @@
-package com.coffeeisoxygen.model.strategies;
+package com.coffeeisoxygen.model.util;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 import com.coffeeisoxygen.model.classes.mapboard.MapBoard;
 import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.enums.TileType;
-import com.coffeeisoxygen.model.interfaces.IMapStrategy;
 import com.coffeeisoxygen.model.managers.TileManager;
-import com.coffeeisoxygen.model.util.Coordinate;
-import com.coffeeisoxygen.model.util.TilePlacementUtils;
 
-public class DijkstraMapStrategy implements IMapStrategy {
-    private final TileManager tileManager;
+public class PathfindingUtils {
 
-    public DijkstraMapStrategy(TileManager tileManager) {
-        this.tileManager = tileManager;
-    }
-
-    @Override
-    public MapBoard generateMap(String name, int rows, int cols) {
-        MapBoard mapBoard = new MapBoard(name, rows, cols);
-        placeTiles(mapBoard);
-        return mapBoard;
-    }
-
-    
-
-    @Override
-    public void placeTiles(MapBoard mapBoard) {
-        TilePlacementUtils.placeDefaultTiles(tileManager, mapBoard);
-
-        // Example Dijkstra's algorithm for pathfinding
+    public static void findPath(MapBoard mapBoard, TileManager tileManager) {
         Coordinate start = new Coordinate(0, 0);
-        Coordinate finish = new Coordinate(mapBoard.getBoard().getHeight() - 1, mapBoard.getBoard().getWidth() - 1);
+        Coordinate finish = new Coordinate(mapBoard.getBoard().getWidth() - 1, mapBoard.getBoard().getHeight() - 1);
 
         PriorityQueue<Coordinate> queue = new PriorityQueue<>(Comparator.comparingInt(c -> c.getX() + c.getY()));
         queue.add(start);
@@ -63,7 +37,7 @@ public class DijkstraMapStrategy implements IMapStrategy {
         // Reconstruct path
         Coordinate current = finish;
         while (current != null) {
-            Tile pathTile = tileManager.createTile(TileType.CHECKPOINT, "Path", current);
+            Tile pathTile = tileManager.createTile(TileType.CHECKPOINT, "SAFE", current);
             mapBoard.setTile(current, pathTile);
             current = cameFrom.get(current);
         }
@@ -73,7 +47,7 @@ public class DijkstraMapStrategy implements IMapStrategy {
         mapBoard.setTile(finish, tileManager.createTile(TileType.FINISHPOINT, "Finish", finish));
     }
 
-    private List<Coordinate> getNeighbors(Coordinate coordinate, MapBoard mapBoard) {
+    private static List<Coordinate> getNeighbors(Coordinate coordinate, MapBoard mapBoard) {
         List<Coordinate> neighbors = new ArrayList<>();
         int x = coordinate.getX();
         int y = coordinate.getY();

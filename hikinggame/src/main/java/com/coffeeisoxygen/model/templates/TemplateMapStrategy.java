@@ -1,10 +1,8 @@
-package com.coffeeisoxygen.model.strategies;
+package com.coffeeisoxygen.model.templates;
 
 import com.coffeeisoxygen.model.classes.mapboard.MapBoard;
 import com.coffeeisoxygen.model.interfaces.IMapStrategy;
 import com.coffeeisoxygen.model.managers.TileManager;
-import com.coffeeisoxygen.model.templates.TemplateData;
-import com.coffeeisoxygen.model.util.TemplateLoader;
 
 public class TemplateMapStrategy implements IMapStrategy {
     private final TileManager tileManager;
@@ -17,7 +15,7 @@ public class TemplateMapStrategy implements IMapStrategy {
 
     @Override
     public MapBoard generateMap(String name, int rows, int cols) {
-        MapBoard mapBoard = new MapBoard(name, rows, cols);
+        MapBoard mapBoard = new MapBoard(templateData.name, templateData.rows, templateData.cols);
         placeTiles(mapBoard);
         return mapBoard;
     }
@@ -26,7 +24,7 @@ public class TemplateMapStrategy implements IMapStrategy {
     public void placeTiles(MapBoard mapBoard) {
         TemplateLoader.loadTemplate(tileManager, mapBoard,
                 templateData.dangerPositions,
-                templateData.checkpointPositions,
+                templateData.checkpoints,
                 templateData.startPositions,
                 templateData.endPositions);
     }
