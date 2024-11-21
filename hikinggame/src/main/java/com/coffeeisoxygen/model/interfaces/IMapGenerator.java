@@ -1,7 +1,7 @@
 package com.coffeeisoxygen.model.interfaces;
 
-import com.coffeeisoxygen.model.classes.board.BoardRefactored;
+import com.coffeeisoxygen.model.classes.mapboard.MapBoard;
 
 public interface IMapGenerator {
-    BoardRefactored generateMap(int rows, int cols);
+    MapBoard generateMap(int rows, int cols);
 }

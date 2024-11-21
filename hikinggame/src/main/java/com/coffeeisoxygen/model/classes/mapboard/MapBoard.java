@@ -1,20 +1,20 @@
-package com.coffeeisoxygen.model.classes.map;
+package com.coffeeisoxygen.model.classes.mapboard;
+
+import java.io.Serializable;
+import java.util.HashMap;
 
 import com.coffeeisoxygen.model.classes.board.Board;
 import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.util.Coordinate;
 
-import java.io.Serializable;
-import java.util.HashMap;
-
-public class Map implements Serializable {
+public class MapBoard implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private final Board board;
     private final Tile[][] tiles;
     private final HashMap<Coordinate, Tile> tileAttributes;
 
-    public Map(Board board) {
+    public MapBoard(Board board) {
         this.board = board;
         this.tiles = new Tile[board.getHeight()][board.getWidth()];
         this.tileAttributes = new HashMap<>();

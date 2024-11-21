@@ -1,5 +1,7 @@
 package com.coffeeisoxygen.model.classes.board;
 
+import java.util.Map;
+
 import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.interfaces.IMapLoader;
@@ -7,17 +9,17 @@ import com.coffeeisoxygen.model.interfaces.ITileFactory;
 import com.coffeeisoxygen.model.managers.TileManager;
 import com.coffeeisoxygen.model.util.Coordinate;
 
-public class DefaultMapLoader implements IMapLoader {
+public class TemplateTilePlacement implements IMapLoader {
     private final ITileFactory tileFactory;
     private final int rows = 6;
     private final int cols = 12;
 
-    public DefaultMapLoader(ITileFactory tileFactory) {
+    public TemplateTilePlacement(ITileFactory tileFactory) {
         this.tileFactory = tileFactory;
     }
 
     @Override
-    public BoardRefactored loadMap() {
+    public Map loadMap() {
         return getDefaultTileLayout();
     }
 

@@ -1,81 +1,78 @@
 package com.coffeeisoxygen.model.managers;
 
 import com.coffeeisoxygen.model.classes.board.Board;
+import com.coffeeisoxygen.model.classes.mapboard.MapBoard;
 import com.coffeeisoxygen.model.classes.tiles.Tile;
-import com.coffeeisoxygen.model.enums.TileType;
+import com.coffeeisoxygen.model.interfaces.IMapEditor;
+import com.coffeeisoxygen.model.interfaces.IMapGenerator;
+import com.coffeeisoxygen.model.interfaces.IMapLoader;
 import com.coffeeisoxygen.model.interfaces.IMapManager;
+import com.coffeeisoxygen.model.interfaces.IMapSaver;
 import com.coffeeisoxygen.model.interfaces.ITileManager;
 import com.coffeeisoxygen.model.util.Coordinate;
 
 public class MapManager implements IMapManager {
-    private BoardManager boardManager;
+    private MapBoard map;
     private ITileManager tileManager;
+    private IMapGenerator mapGenerator;
+    private IMapLoader mapLoader;
+    private IMapSaver mapSaver;
+    private IMapEditor mapEditor;
 
-    public MapManager(Board board, ITileManager tileManager) {
-        this.boardManager = new BoardManager(board);
+    public MapManager(ITileManager tileManager, IMapGenerator mapGenerator, IMapLoader mapLoader, IMapSaver mapSaver,
+            IMapEditor mapEditor) {
         this.tileManager = tileManager;
+        this.mapGenerator = mapGenerator;
+        this.mapLoader = mapLoader;
+        this.mapSaver = mapSaver;
+        this.mapEditor = mapEditor;
     }
 
     @Override
-    public void createMaze(int rows, int cols) {
-        Board board = new Board(rows, cols);
-        boardManager = new BoardManager(board);
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                TileType type = (row == 0 && col == 0) ? TileType.STARTPOINT : TileType.NORMALPOINT;
-                Tile tile = tileManager.createTile(type, "Tile " + row + "," + col, new Coordinate(row, col));
-                setTile(new Coordinate(row, col), tile);
-            }
-        }
+    public void createMap(int rows, int cols) {
+        Board board = mapGenerator.generateMap(rows, cols);
+        this.map = new MapBoard(board);
     }
 
     @Override
-    public void createPercolation(int rows, int cols) {
-        Board board = new Board(rows, cols);
-        boardManager = new BoardManager(board);
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                TileType type = (row == rows - 1 && col == cols - 1) ? TileType.FINISHPOINT : TileType.NORMALPOINT;
-                Tile tile = tileManager.createTile(type, "Tile " + row + "," + col, new Coordinate(row, col));
-                setTile(new Coordinate(row, col), tile);
-            }
-        }
+    public void loadMap() {
+        Board board = mapLoader.loadMap();
+        this.map = new MapBoard(board);
     }
 
     @Override
-    public void createSimpleBoard(int rows, int cols) {
-        Board board = new Board(rows, cols);
-        boardManager = new BoardManager(board);
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                Tile tile = tileManager.createTile(TileType.NORMALPOINT, "Tile " + row + "," + col, new Coordinate(row, col));
-                setTile(new Coordinate(row, col), tile);
-            }
-        }
+    public void saveMap() {
+        mapSaver.saveMap(map.getBoard());
+    }
+
+    @Override
+    public void resetMap() {
+        Board board = mapEditor.createCustomMap(map.getBoard().getHeight(), map.getBoard().getWidth());
+        this.map = new MapBoard(board);
     }
 
     @Override
     public Tile getTileAt(Coordinate position) {
-        return boardManager.getBoard().getTile(position);
+        return map.getTile(position);
     }
 
     @Override
     public boolean isValidPosition(Coordinate position) {
-        return boardManager.isValidPosition(position.getX(), position.getY());
+        return map.isValidPosition(position);
     }
 
     @Override
     public void setTile(Coordinate position, Tile tile) {
-        boardManager.getBoard().setTile(position, tile);
+        map.setTile(position, tile);
     }
 
     @Override
     public void visualizeMap() {
-        boardManager.getBoard().visualizeBoard();
+        map.visualizeMap();
     }
 
     @Override
     public Board getBoard() {
-        return boardManager.getBoard();
+        return map.getBoard();
     }
 }

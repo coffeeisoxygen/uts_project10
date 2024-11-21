@@ -1,5 +1,6 @@
 package com.coffeeisoxygen.model.classes.board;
 
+import com.coffeeisoxygen.model.context.MapGeneratorContext;
 import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.interfaces.IMapEditor;
 import com.coffeeisoxygen.model.interfaces.IMapGenerator;
@@ -7,11 +8,11 @@ import com.coffeeisoxygen.model.interfaces.ITileFactory;
 import com.coffeeisoxygen.model.managers.TileManager;
 import com.coffeeisoxygen.model.util.Coordinate;
 
-public class CustomMapEditor implements IMapEditor {
+public class DefaultTilePlacement implements IMapEditor {
     private ITileFactory tileFactory;
     private MapGeneratorContext mapGeneratorContext;
 
-    public CustomMapEditor(ITileFactory tileFactory, MapGeneratorContext mapGeneratorContext) {
+    public DefaultTilePlacement(ITileFactory tileFactory, MapGeneratorContext mapGeneratorContext) {
         this.tileFactory = tileFactory;
         this.mapGeneratorContext = mapGeneratorContext;
     }

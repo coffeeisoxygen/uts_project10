@@ -3,14 +3,14 @@ package com.coffeeisoxygen;
 import java.util.Scanner;
 
 import com.coffeeisoxygen.model.classes.board.BoardRefactored;
-import com.coffeeisoxygen.model.classes.board.CustomMapEditor;
+import com.coffeeisoxygen.model.classes.board.DefaultTilePlacement;
 import com.coffeeisoxygen.model.classes.board.CustomMapLoader;
 import com.coffeeisoxygen.model.classes.board.CustomMapSaver;
-import com.coffeeisoxygen.model.classes.board.DefaultMapLoader;
-import com.coffeeisoxygen.model.classes.board.MapGeneratorContext;
+import com.coffeeisoxygen.model.classes.board.TemplateTilePlacement;
 import com.coffeeisoxygen.model.classes.board.MazeGenerator;
 import com.coffeeisoxygen.model.classes.board.PercolationGenerator;
 import com.coffeeisoxygen.model.classes.tiles.Tile;
+import com.coffeeisoxygen.model.context.MapGeneratorContext;
 import com.coffeeisoxygen.model.factory.TileFactory;
 import com.coffeeisoxygen.model.interfaces.IMapEditor;
 import com.coffeeisoxygen.model.interfaces.IMapLoader;
@@ -33,7 +33,7 @@ public class Main {
             BoardRefactored board;
             switch (choice) {
                 case 1 -> {
-                    IMapLoader defaultMapLoader = new DefaultMapLoader(tileFactory);
+                    IMapLoader defaultMapLoader = new TemplateTilePlacement(tileFactory);
                     board = defaultMapLoader.loadMap();
                 }
                 case 2 -> {
@@ -62,7 +62,7 @@ public class Main {
                         }
                     }
 
-                    IMapEditor mapEditor = new CustomMapEditor(tileFactory, mapGeneratorContext);
+                    IMapEditor mapEditor = new DefaultTilePlacement(tileFactory, mapGeneratorContext);
                     board = mapEditor.createCustomMap(rows, cols);
                 }
                 default -> {
@@ -92,7 +92,7 @@ public class Main {
     }
 }
 
-// [ ] todo : Algorithm Improvements: 
+// [ ] todo : Algorithm Improvements:
 // - [ ] todo : Research and implement more sophisticated
 // algorithms for map generation.
 // - [ ] todo : Game Logic: Implement the core game logic, including player
@@ -107,4 +107,3 @@ public class Main {
 // ? [ ] MARK: Documentation: Add documentation and comments to the code to
 // improve
 // readability and maintainability.
-
