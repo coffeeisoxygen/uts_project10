@@ -5,22 +5,29 @@ import java.util.Random;
 import com.coffeeisoxygen.model.classes.mapboard.MapBoard;
 import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.enums.TileType;
-import com.coffeeisoxygen.model.interfaces.ITilePlacementAlgorithm;
+import com.coffeeisoxygen.model.interfaces.IMapStrategy;
 import com.coffeeisoxygen.model.managers.TileManager;
 import com.coffeeisoxygen.model.util.Coordinate;
 import com.coffeeisoxygen.model.util.TilePlacementUtils;
 
-public class PercolationTilePlacement implements ITilePlacementAlgorithm {
+public class PercolationMapStrategy implements IMapStrategy {
     private final TileManager tileManager;
     private final Random random = new Random();
 
-    public PercolationTilePlacement(TileManager tileManager) {
+    public PercolationMapStrategy(TileManager tileManager) {
         this.tileManager = tileManager;
     }
 
     @Override
+    public MapBoard generateMap(String name, int rows, int cols) {
+        MapBoard mapBoard = new MapBoard(name, rows, cols);
+        placeTiles(mapBoard);
+        return mapBoard;
+    }
+
+    @Override
     public void placeTiles(MapBoard mapBoard) {
-        TilePlacementUtils.placeNormalTiles(tileManager, mapBoard);
+        TilePlacementUtils.placeDefaultTiles(tileManager, mapBoard);
 
         // Example percolation generation logic
         for (int row = 0; row < mapBoard.getBoard().getHeight(); row++) {

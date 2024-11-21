@@ -1,0 +1,57 @@
+{
+  "mapname": "UTS Project",
+  "maprows": 6,
+  "mapheight": 12,
+  "coordinates": [
+    {
+      "dangerPositions": [
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [0, 4],
+        [0, 5],
+        [0, 6],
+        [0, 7],
+        [0, 8],
+        [1, 1],
+        [1, 5],
+        [1, 6],
+        [1, 8],
+        [1, 10],
+        [2, 1],
+        [2, 2],
+        [2, 3],
+        [2, 10],
+        [3, 5],
+        [3, 8],
+        [3, 9],
+        [3, 10],
+        [4, 2],
+        [4, 5],
+        [4, 7],
+        [4, 8],
+        [4, 9],
+        [4, 10],
+        [5, 2]
+      ],
+      "checkpointPositions": [
+        [1, 7],
+        [2, 5],
+        [3, 1],
+        [4, 6],
+        [5, 0],
+        [5, 3]
+      ],
+      "checkpointNames": [
+        "Checkpoint 1",
+        "Checkpoint 2",
+        "Checkpoint 3",
+        "Checkpoint 4",
+        "Checkpoint 5",
+        "Checkpoint 6"
+      ],
+      "startPositions": [[5, 11]],
+      "endPositions": [[0, 0]]
+    }
+  ]
+}

@@ -5,22 +5,30 @@ import java.util.HashMap;
 
 import com.coffeeisoxygen.model.classes.board.Board;
 import com.coffeeisoxygen.model.classes.tiles.Tile;
+import com.coffeeisoxygen.model.managers.TileManager;
 import com.coffeeisoxygen.model.util.Coordinate;
+import com.coffeeisoxygen.model.util.TilePlacementUtils;
 
 public class MapBoard implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private final String name;
     private final Board board;
     private final Tile[][] tiles;
     private final HashMap<Coordinate, Tile> tileAttributes;
 
-    public MapBoard(Board board) {
-        this.board = board;
-        this.tiles = new Tile[board.getHeight()][board.getWidth()];
+    public MapBoard(String name, int rows, int cols) {
+        this.name = name;
+        this.board = new Board(cols, rows);
+        this.tiles = new Tile[rows][cols];
         this.tileAttributes = new HashMap<>();
     }
 
-    public  Board getBoard() {
+    public String getName() {
+        return name;
+    }
+
+    public Board getBoard() {
         return board;
     }
 
@@ -61,5 +69,9 @@ public class MapBoard implements Serializable {
             }
             System.out.println();
         }
+    }
+
+    public void resetMap(TileManager tileManager) {
+        TilePlacementUtils.placeDefaultTiles(tileManager, this);
     }
 }

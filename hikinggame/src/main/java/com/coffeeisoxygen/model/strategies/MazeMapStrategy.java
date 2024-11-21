@@ -2,21 +2,28 @@ package com.coffeeisoxygen.model.strategies;
 
 import com.coffeeisoxygen.model.classes.mapboard.MapBoard;
 import com.coffeeisoxygen.model.enums.TileType;
-import com.coffeeisoxygen.model.interfaces.ITilePlacementAlgorithm;
+import com.coffeeisoxygen.model.interfaces.IMapStrategy;
 import com.coffeeisoxygen.model.managers.TileManager;
 import com.coffeeisoxygen.model.util.Coordinate;
 import com.coffeeisoxygen.model.util.TilePlacementUtils;
 
-public class MazeTilePlacement implements ITilePlacementAlgorithm {
+public class MazeMapStrategy implements IMapStrategy {
     private final TileManager tileManager;
 
-    public MazeTilePlacement(TileManager tileManager) {
+    public MazeMapStrategy(TileManager tileManager) {
         this.tileManager = tileManager;
     }
 
     @Override
+    public MapBoard generateMap(String name, int rows, int cols) {
+        MapBoard mapBoard = new MapBoard(name, rows, cols);
+        placeTiles(mapBoard);
+        return mapBoard;
+    }
+
+    @Override
     public void placeTiles(MapBoard mapBoard) {
-        TilePlacementUtils.placeNormalTiles(tileManager, mapBoard);
+        TilePlacementUtils.placeDefaultTiles(tileManager, mapBoard);
 
         // Generate a maze using DFS
         int rows = mapBoard.getBoard().getHeight();
@@ -61,7 +68,6 @@ public class MazeTilePlacement implements ITilePlacementAlgorithm {
         int rows = grid.length;
         int cols = grid[0].length;
 
-
         // Iterate over all possible directions
         for (int i = 0; i < 4; i++) {
             int newRow = row + dr[i];
@@ -75,4 +81,5 @@ public class MazeTilePlacement implements ITilePlacementAlgorithm {
             }
         }
     }
+
 }

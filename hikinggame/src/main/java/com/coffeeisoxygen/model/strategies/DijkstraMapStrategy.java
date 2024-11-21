@@ -10,21 +10,30 @@ import java.util.PriorityQueue;
 import com.coffeeisoxygen.model.classes.mapboard.MapBoard;
 import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.enums.TileType;
-import com.coffeeisoxygen.model.interfaces.ITilePlacementAlgorithm;
+import com.coffeeisoxygen.model.interfaces.IMapStrategy;
 import com.coffeeisoxygen.model.managers.TileManager;
 import com.coffeeisoxygen.model.util.Coordinate;
 import com.coffeeisoxygen.model.util.TilePlacementUtils;
 
-public class DijkstraTilePlacement implements ITilePlacementAlgorithm {
+public class DijkstraMapStrategy implements IMapStrategy {
     private final TileManager tileManager;
 
-    public DijkstraTilePlacement(TileManager tileManager) {
+    public DijkstraMapStrategy(TileManager tileManager) {
         this.tileManager = tileManager;
     }
 
     @Override
+    public MapBoard generateMap(String name, int rows, int cols) {
+        MapBoard mapBoard = new MapBoard(name, rows, cols);
+        placeTiles(mapBoard);
+        return mapBoard;
+    }
+
+    
+
+    @Override
     public void placeTiles(MapBoard mapBoard) {
-        TilePlacementUtils.placeNormalTiles(tileManager, mapBoard);
+        TilePlacementUtils.placeDefaultTiles(tileManager, mapBoard);
 
         // Example Dijkstra's algorithm for pathfinding
         Coordinate start = new Coordinate(0, 0);
@@ -69,10 +78,14 @@ public class DijkstraTilePlacement implements ITilePlacementAlgorithm {
         int x = coordinate.getX();
         int y = coordinate.getY();
 
-        if (mapBoard.isValidPosition(new Coordinate(x - 1, y))) neighbors.add(new Coordinate(x - 1, y));
-        if (mapBoard.isValidPosition(new Coordinate(x + 1, y))) neighbors.add(new Coordinate(x + 1, y));
-        if (mapBoard.isValidPosition(new Coordinate(x, y - 1))) neighbors.add(new Coordinate(x, y - 1));
-        if (mapBoard.isValidPosition(new Coordinate(x, y + 1))) neighbors.add(new Coordinate(x, y + 1));
+        if (mapBoard.isValidPosition(new Coordinate(x - 1, y)))
+            neighbors.add(new Coordinate(x - 1, y));
+        if (mapBoard.isValidPosition(new Coordinate(x + 1, y)))
+            neighbors.add(new Coordinate(x + 1, y));
+        if (mapBoard.isValidPosition(new Coordinate(x, y - 1)))
+            neighbors.add(new Coordinate(x, y - 1));
+        if (mapBoard.isValidPosition(new Coordinate(x, y + 1)))
+            neighbors.add(new Coordinate(x, y + 1));
 
         return neighbors;
     }
