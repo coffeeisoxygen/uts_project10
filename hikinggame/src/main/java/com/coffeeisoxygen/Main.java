@@ -1,109 +1,96 @@
 package com.coffeeisoxygen;
 
-import java.util.Scanner;
-
-import com.coffeeisoxygen.model.classes.board.BoardRefactored;
-import com.coffeeisoxygen.model.classes.board.DefaultTilePlacement;
-import com.coffeeisoxygen.model.classes.board.CustomMapLoader;
-import com.coffeeisoxygen.model.classes.board.CustomMapSaver;
-import com.coffeeisoxygen.model.classes.board.TemplateTilePlacement;
-import com.coffeeisoxygen.model.classes.board.MazeGenerator;
-import com.coffeeisoxygen.model.classes.board.PercolationGenerator;
+import com.coffeeisoxygen.model.classes.board.MapGeneratorContext;
 import com.coffeeisoxygen.model.classes.tiles.Tile;
-import com.coffeeisoxygen.model.context.MapGeneratorContext;
+import com.coffeeisoxygen.model.enums.TileType;
 import com.coffeeisoxygen.model.factory.TileFactory;
 import com.coffeeisoxygen.model.interfaces.IMapEditor;
+import com.coffeeisoxygen.model.interfaces.IMapGenerator;
 import com.coffeeisoxygen.model.interfaces.IMapLoader;
+import com.coffeeisoxygen.model.interfaces.IMapManager;
 import com.coffeeisoxygen.model.interfaces.IMapSaver;
 import com.coffeeisoxygen.model.interfaces.ITileFactory;
+import com.coffeeisoxygen.model.interfaces.ITilePlacementAlgorithm;
+import com.coffeeisoxygen.model.managers.MapManager;
+import com.coffeeisoxygen.model.managers.TileManager;
+import com.coffeeisoxygen.model.strategies.CustomMapEditor;
+import com.coffeeisoxygen.model.strategies.CustomMapLoader;
+import com.coffeeisoxygen.model.strategies.CustomMapSaver;
+import com.coffeeisoxygen.model.strategies.DefaultTilePlacementAlgorithm;
+import com.coffeeisoxygen.model.strategies.DijkstraTilePlacement;
+import com.coffeeisoxygen.model.strategies.MazeTilePlacement;
+import com.coffeeisoxygen.model.strategies.PercolationTilePlacement;
+import com.coffeeisoxygen.model.strategies.SimpleMapGenerator;
+import com.coffeeisoxygen.model.strategies.TemplateTilePlacement;
+import com.coffeeisoxygen.model.util.Coordinate;
+
+import java.util.HashMap;
 
 public class Main {
-    private static final String MAPS_DIRECTORY = "maps";
-
     public static void main(String[] args) {
+        // Create a tile factory and manager
         ITileFactory tileFactory = new TileFactory();
+        TileManager tileManager = new TileManager(tileFactory);
+
+        // Create map strategies
+        IMapGenerator simpleMapGenerator = new SimpleMapGenerator();
+        IMapLoader mapLoader = new CustomMapLoader();
+        IMapSaver mapSaver = new CustomMapSaver("map.ser");
+        IMapEditor mapEditor = new CustomMapEditor();
+        ITilePlacementAlgorithm defaultTilePlacementAlgorithm = new DefaultTilePlacementAlgorithm(tileManager);
+        ITilePlacementAlgorithm mazeTilePlacementAlgorithm = new MazeTilePlacement(tileManager);
+        ITilePlacementAlgorithm percolationTilePlacementAlgorithm = new PercolationTilePlacement(tileManager);
+        ITilePlacementAlgorithm dijkstraTilePlacementAlgorithm = new DijkstraTilePlacement(tileManager);
+
+        // Create a map generator context
         MapGeneratorContext mapGeneratorContext = new MapGeneratorContext();
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Choose an option:");
-            System.out.println("1. Load default map");
-            System.out.println("2. Load custom map");
-            System.out.println("3. Create custom map");
-            int choice = scanner.nextInt();
+        mapGeneratorContext.setMapGenerator(simpleMapGenerator);
 
-            BoardRefactored board;
-            switch (choice) {
-                case 1 -> {
-                    IMapLoader defaultMapLoader = new TemplateTilePlacement(tileFactory);
-                    board = defaultMapLoader.loadMap();
-                }
-                case 2 -> {
-                    System.out.println("Enter the file name to load the map:");
-                    String fileName = scanner.next();
-                    IMapLoader customMapLoader = new CustomMapLoader(tileFactory, MAPS_DIRECTORY, fileName);
-                    board = customMapLoader.loadMap();
-                }
-                case 3 -> {
-                    System.out.println("Enter the number of rows:");
-                    int rows = scanner.nextInt();
-                    System.out.println("Enter the number of columns:");
-                    int cols = scanner.nextInt();
+        // Create a template tile placement algorithm
+        HashMap<String, TileType[][]> templates = new HashMap<>();
+        ITilePlacementAlgorithm templateTilePlacementAlgorithm = new TemplateTilePlacement(tileManager);
 
-                    System.out.println("Choose a map generation algorithm:");
-                    System.out.println("1. Maze Generation");
-                    System.out.println("2. Percolation");
-                    int algoChoice = scanner.nextInt();
+        // Create a map manager
+        IMapManager mapManager = new MapManager(tileManager, mapGeneratorContext, mapLoader, mapSaver, mapEditor, templateTilePlacementAlgorithm);
 
-                    switch (algoChoice) {
-                        case 1 -> mapGeneratorContext.setMapGenerator(new MazeGenerator(tileFactory));
-                        case 2 -> mapGeneratorContext.setMapGenerator(new PercolationGenerator(tileFactory));
-                        default -> {
-                            System.out.println("Invalid choice. Defaulting to normal tiles.");
-                            mapGeneratorContext.setMapGenerator(null);
-                        }
-                    }
+        // Create and place tiles on the map
+        mapManager.createMap(10, 10);
+        Tile startTile = tileManager.createTile(TileType.STARTPOINT, "Start", new Coordinate(0, 0));
+        Tile finishTile = tileManager.createTile(TileType.FINISHPOINT, "Finish", new Coordinate(9, 9));
+        mapManager.setTile(new Coordinate(0, 0), startTile);
+        mapManager.setTile(new Coordinate(9, 9), finishTile);
 
-                    IMapEditor mapEditor = new DefaultTilePlacement(tileFactory, mapGeneratorContext);
-                    board = mapEditor.createCustomMap(rows, cols);
-                }
-                default -> {
-                    System.out.println("Invalid choice.");
-                    return;
-                }
-            }
+        // Visualize the map
+        mapManager.visualizeMap();
 
-            // Display all tiles on the board
-            for (Tile tile : board.getAllTiles()) {
-                System.out.println(tile.getName() + " at " + tile.getPosition() + " COLOR " + tile.getColor());
-            }
+        // Save the map
+        mapManager.saveMap();
 
-            // Visualize the board
-            board.visualizeBoard();
+        // Load the map
+        mapManager.loadMap();
+        mapManager.visualizeMap();
 
-            // Save the custom map
-            System.out.println("Do you want to save the current map? (yes/no)");
-            String saveChoice = scanner.next();
-            if (saveChoice.equalsIgnoreCase("yes")) {
-                System.out.println("Enter the file name to save the map:");
-                String fileName = scanner.next();
-                IMapSaver customMapSaver = new CustomMapSaver(MAPS_DIRECTORY, fileName);
-                customMapSaver.saveMap(board);
-            }
-        }
+        // Reset the map
+        mapManager.resetMap();
+        mapManager.visualizeMap();
+
+        // Change map generator strategy
+        IMapGenerator anotherMapGenerator = new AnotherMapGenerator();
+        mapManager.setMapGenerator(anotherMapGenerator);
+        mapManager.createMap(10, 10);
+        mapManager.visualizeMap();
+
+        // Use different tile placement algorithms
+        mapManager = new MapManager(tileManager, mapGeneratorContext, mapLoader, mapSaver, mapEditor, mazeTilePlacementAlgorithm);
+        mapManager.createMap(10, 10);
+        mapManager.visualizeMap();
+
+        mapManager = new MapManager(tileManager, mapGeneratorContext, mapLoader, mapSaver, mapEditor, percolationTilePlacementAlgorithm);
+        mapManager.createMap(10, 10);
+        mapManager.visualizeMap();
+
+        mapManager = new MapManager(tileManager, mapGeneratorContext, mapLoader, mapSaver, mapEditor, dijkstraTilePlacementAlgorithm);
+        mapManager.createMap(10, 10);
+        mapManager.visualizeMap();
     }
 }
-
-// [ ] todo : Algorithm Improvements:
-// - [ ] todo : Research and implement more sophisticated
-// algorithms for map generation.
-// - [ ] todo : Game Logic: Implement the core game logic, including player
-// movement,
-// scoring, and game state management.
-// ? [ ] MARK: UI Enhancements: Improve the user interface, possibly adding a
-// graphical
-// interface or enhancing the text-based interface.
-// ? [ ] MARK: Testing: Write unit tests and integration tests to ensure the
-// correctness
-// of the game logic and map generation algorithms.
-// ? [ ] MARK: Documentation: Add documentation and comments to the code to
-// improve
-// readability and maintainability.

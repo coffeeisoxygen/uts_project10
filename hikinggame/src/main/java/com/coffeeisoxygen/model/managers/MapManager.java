@@ -1,6 +1,7 @@
 package com.coffeeisoxygen.model.managers;
 
 import com.coffeeisoxygen.model.classes.board.Board;
+import com.coffeeisoxygen.model.strategies.MapGeneratorContext;
 import com.coffeeisoxygen.model.classes.mapboard.MapBoard;
 import com.coffeeisoxygen.model.classes.tiles.Tile;
 import com.coffeeisoxygen.model.interfaces.IMapEditor;
@@ -9,70 +10,78 @@ import com.coffeeisoxygen.model.interfaces.IMapLoader;
 import com.coffeeisoxygen.model.interfaces.IMapManager;
 import com.coffeeisoxygen.model.interfaces.IMapSaver;
 import com.coffeeisoxygen.model.interfaces.ITileManager;
+import com.coffeeisoxygen.model.interfaces.ITilePlacementAlgorithm;
 import com.coffeeisoxygen.model.util.Coordinate;
+import com.coffeeisoxygen.model.util.TilePlacementUtils;
 
 public class MapManager implements IMapManager {
-    private MapBoard map;
+    private MapBoard mapBoard;
     private ITileManager tileManager;
-    private IMapGenerator mapGenerator;
+    private MapGeneratorContext mapGeneratorContext;
     private IMapLoader mapLoader;
     private IMapSaver mapSaver;
     private IMapEditor mapEditor;
+    private ITilePlacementAlgorithm tilePlacementAlgorithm;
 
-    public MapManager(ITileManager tileManager, IMapGenerator mapGenerator, IMapLoader mapLoader, IMapSaver mapSaver,
-            IMapEditor mapEditor) {
+    public MapManager(ITileManager tileManager, MapGeneratorContext mapGeneratorContext, IMapLoader mapLoader,
+            IMapSaver mapSaver, IMapEditor mapEditor, ITilePlacementAlgorithm tilePlacementAlgorithm) {
         this.tileManager = tileManager;
-        this.mapGenerator = mapGenerator;
+        this.mapGeneratorContext = mapGeneratorContext;
         this.mapLoader = mapLoader;
         this.mapSaver = mapSaver;
         this.mapEditor = mapEditor;
+        this.tilePlacementAlgorithm = tilePlacementAlgorithm;
     }
 
     @Override
     public void createMap(int rows, int cols) {
-        Board board = mapGenerator.generateMap(rows, cols);
-        this.map = new MapBoard(board);
+        MapBoard board = mapGeneratorContext.generateMap(rows, cols);
+        this.mapBoard = new MapBoard(board);
+        tilePlacementAlgorithm.placeTiles(mapBoard);
     }
 
     @Override
     public void loadMap() {
         Board board = mapLoader.loadMap();
-        this.map = new MapBoard(board);
+        this.mapBoard = new MapBoard(board);
     }
 
     @Override
     public void saveMap() {
-        mapSaver.saveMap(map.getBoard());
+        mapSaver.saveMap(mapBoard.getBoard());
     }
 
     @Override
     public void resetMap() {
-        Board board = mapEditor.createCustomMap(map.getBoard().getHeight(), map.getBoard().getWidth());
-        this.map = new MapBoard(board);
+        TilePlacementUtils.placeNormalTiles(tileManager, mapBoard);
     }
 
     @Override
     public Tile getTileAt(Coordinate position) {
-        return map.getTile(position);
+        return mapBoard.getTile(position);
     }
 
     @Override
     public boolean isValidPosition(Coordinate position) {
-        return map.isValidPosition(position);
+        return mapBoard.isValidPosition(position);
     }
 
     @Override
     public void setTile(Coordinate position, Tile tile) {
-        map.setTile(position, tile);
+        mapBoard.setTile(position, tile);
     }
 
     @Override
     public void visualizeMap() {
-        map.visualizeMap();
+        mapBoard.visualizeMap();
     }
 
     @Override
     public Board getBoard() {
-        return map.getBoard();
+        return mapBoard.getBoard();
+    }
+
+    public void setMapGenerator(IMapGenerator mapGenerator) {
+        mapGeneratorContext.setMapGenerator(mapGenerator);
     }
 }

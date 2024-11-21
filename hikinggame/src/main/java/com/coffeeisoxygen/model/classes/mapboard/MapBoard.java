@@ -20,7 +20,7 @@ public class MapBoard implements Serializable {
         this.tileAttributes = new HashMap<>();
     }
 
-    public Board getBoard() {
+    public  Board getBoard() {
         return board;
     }
 

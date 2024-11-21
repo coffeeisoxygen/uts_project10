@@ -1,4 +1,4 @@
-package com.coffeeisoxygen.model.context;
+package com.coffeeisoxygen.model.strategies;
 
 import com.coffeeisoxygen.model.classes.mapboard.MapBoard;
 import com.coffeeisoxygen.model.interfaces.IMapGenerator;
